@@ -1,6 +1,4 @@
--- Active: 1674038232976@@127.0.0.1@3306@express_quests
-DROP TABLE IF EXISTS movies;
-
+-- Active: 1674027108611@@127.0.0.1@3306
 CREATE TABLE movies (
   id int primary key NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
@@ -56,7 +54,7 @@ VALUES
     150
   );
 
-DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
     id int primary key NOT NULL AUTO_INCREMENT,
@@ -112,3 +110,4 @@ VALUES
     'Milan',
     'Spanish'
   );
+

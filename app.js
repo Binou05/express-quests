@@ -1,8 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
 
-const port = 5000;
+const port = process.env.APP_PORT ?? 5088;
 
 const welcome = (req, res) => {
   res.send("Welcome to my favourite movie list");
@@ -19,6 +21,13 @@ app.listen(port, (err) => {
   if (err) {
     console.error("Something bad happened");
   } else {
-    console.log(`Server is listening on ${port}`);
+    console.log(`Server is listening`);
   }
 });
+
+const userHandlers = require("./userHandlers");
+app.get("/api/users", userHandlers.getUsers);
+app.get("/api/users/:id", userHandlers.getUserById);
+
+
+

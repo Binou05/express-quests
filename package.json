@@ -20,9 +20,18 @@
   },
   "homepage": "https://github.com/WildCodeSchool/Express-Quests#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mysql2": "^3.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.8.3"
   }
 }
