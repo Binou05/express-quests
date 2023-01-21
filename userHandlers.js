@@ -1,5 +1,11 @@
 const database = require("./database");
-
+/*
+const getUsers = (req, res) => {
+  database.query("select * from users").then(([users]) => {
+    res.status(200).json(users);
+  });
+};
+*/
 const getUsers = (req, res) => {
   const filterLanguage = req.query.language;
   const filterCity = req.query.city;
