@@ -1,34 +1,34 @@
 const database = require("./database");
 
 const getUsers = (req, res) => {
-  let sql = 'SELECT * FROM users';
-  const sqlValues = [];
-
-  if (req.query.language) {
-    sql += ' WHERE language = ?';
-    sqlValues.push(req.query.language);
-  }
- if (req.query.city) {
-   if (req.query.language) {
-     
-     sql += " AND city = ?";
-   } else {
-    
-     sql += " WHERE city = ?";
-   }
-   sqlValues.push(req.query.city);
- }
-database
-  .query(sql, sqlValues, (err, results) => {
-    if (err) {
-      res.status(500).send(`An error occurred: ${err.message}`);
-    } else {
-      res.json(results);
+  const filterLanguage = req.query.language;
+  const filterCity = req.query.city;
+  let query = "SELECT * FROM users";
+  const args = [];
+  if (filterLanguage || filterCity) {
+    query += " WHERE ";
+    if (filterLanguage) {
+      query += filterLanguage ? "language = ?" : "";
+      args.push(filterLanguage);
     }
-  });
-
- 
+    query += filterLanguage && filterCity ? " AND " : "";
+    if (filterCity) {
+      query += filterCity ? "city = ?" : "";
+      args.push(filterCity);
+    }
+    query += ";";
+  }
+  database
+    .query(query, args)
+    .then(([data]) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error retrieving data from database");
+    });
 };
+
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id);
   database
