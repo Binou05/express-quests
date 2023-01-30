@@ -5,11 +5,33 @@ const getUsers = (req, res) => {
     res.status(200).json(users);
   });
 };
-*/
-const getUsers = (req, res) => {
+*/// ...
+
+//  const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  //  const { email } = req.body;
+
+  //  database
+    //  .query("select * from users where email = ?", [email])
+//  .then(([users]) => {
+      // if (users[0] != null) {
+        //  req.user = users[0];
+
+      //  next();
+      // } else {
+        //  res.sendStatus(401);
+      //  }
+    //  })
+    //  .catch((err) => {
+      //  console.error(err);
+      //  res.status(500).send("Error retrieving data from database");
+    // });
+//  };
+
+function getUsers(req, res) {
   const filterLanguage = req.query.language;
   const filterCity = req.query.city;
-  let query = "SELECT * FROM users";
+  let query =
+    "SELECT id, firstname, lastname, email, city, language FROM users";
   const args = [];
   if (filterLanguage || filterCity) {
     query += " WHERE ";
@@ -33,7 +55,7 @@ const getUsers = (req, res) => {
       console.error(err);
       res.status(500).send("Error retrieving data from database");
     });
-};
+}
 
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id);
@@ -74,7 +96,7 @@ const postUser = (req, res) => {
 
    database
      .query(
-       "update users set firstname= ?, lastname = ?, email = ?, city = ?, langage = ?, hashedPassword = ?, where id = ?",
+       "update users set firstname= ?, lastname = ?, email = ?, city = ?, langage = ?, hashedPassword = ? where id = ?",
        [firstname, lastname, email, city, language, hashedPassword, id]
      )
      .then(([result]) => {
@@ -112,4 +134,5 @@ module.exports = {
   postUser,
   updateUser,
   deleteUser,
+  //  getUserByEmailWithPasswordAndPassToNext,
 };
