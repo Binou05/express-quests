@@ -6,7 +6,7 @@ const hashingOptions = {
   timeCost: 5,
   parallelism: 1,
 };
-
+// coucou
 const hashPassword = (req, res, next) => {
   argon2
     .hash(req.body.password, hashingOptions)
