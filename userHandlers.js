@@ -96,8 +96,8 @@ const postUser = (req, res) => {
 
    database
      .query(
-       "update users set firstname= ?, lastname = ?, email = ?, city = ?, langage = ?, hashedPassword = ? where id = ?",
-       [firstname, lastname, email, city, language, hashedPassword, id]
+       "update users set firstname= ?, lastname = ?, email = ?, city = ?, langage = ?, where id = ?",
+       [firstname, lastname, email, city, language, id]
      )
      .then(([result]) => {
        if (result.affectedRows === 0) {
